@@ -1,4 +1,7 @@
 'use strict';
+/**
+ * Stylus(.styl)をコンパイルする
+ */
 
 var gulp = require('gulp');
 
@@ -7,7 +10,6 @@ var paths = gulp.paths;
 var $ = require('gulp-load-plugins')();
 
 gulp.task('styles', function () {
-
 
   var injectFiles = gulp.src([
     paths.src + '/{app,components}/**/*.styl',

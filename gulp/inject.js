@@ -26,15 +26,17 @@ gulp.task('inject', ['styles'], function () {
     addRootSlash: false
   };
 
+  /**
+   * Bower依存ファイルを注入するオプションを指定
+   */
   var wiredepOptions = {
     directory: 'bower_components',
     exclude: [/bootstrap\.js/, /bootstrap\.css/, /bootstrap\.css/, /foundation\.css/]
   };
 
   return gulp.src(paths.src + '/*.html')
-    .pipe($.inject(injectStyles, injectOptions))
-    .pipe($.inject(injectScripts, injectOptions))
-    .pipe(wiredep(wiredepOptions))
-    .pipe(gulp.dest(paths.tmp + '/serve'));
-
+    .pipe($.inject(injectStyles, injectOptions))  // 依存するCSSファイルを注入
+    .pipe($.inject(injectScripts, injectOptions)) // 依存するJSファイルを注入
+    .pipe(wiredep(wiredepOptions))                // 依存するBowerファイルを注入
+    .pipe(gulp.dest(paths.tmp + '/serve'));       // 結果を tmp/serve へコピー
 });
